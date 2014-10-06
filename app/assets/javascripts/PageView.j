@@ -285,7 +285,7 @@
         _bgLayer = [[BgLayer alloc] init];
         [_bgLayer setBounds:commonBounds];
         [_bgLayer setAnchorPoint:CGPointMakeZero()];
-        [_bgLayer setImage:[[CPImage alloc] initWithContentsOfFile:@"/js/Resources/layer_bg.png" size:commonSize]];
+        [_bgLayer setImage:[[CPImage alloc] initWithContentsOfFile:@"images/layer_bg.png" size:commonSize]];
         
         [_rootLayer addSublayer:_bgLayer];
         [_bgLayer setNeedsDisplay];

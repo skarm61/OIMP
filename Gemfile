@@ -18,6 +18,9 @@ group :development, :test do
   gem 'pry'
 end
 
+gem 'haml-rails'
+gem 'cappuccino-rails'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

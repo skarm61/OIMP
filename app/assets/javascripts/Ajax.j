@@ -26,7 +26,7 @@
 	parameters.url = typeof(parameters.url) == 'undefined' ? window.location : parameters.url;
 	ajaxObject.open(parameters.type, parameters.url, parameters.async);
 
-    if (parameters.async == true)
+    if (false)
     {
         ajaxObject.onreadystatechange = function()
         {
@@ -40,7 +40,7 @@
     }
 
 	ajaxObject.send(null);
-	if (parameters.async == false)
+	if (true)
 	{
 		if (ajaxObject.status == 200 && ajaxObject.readyState == 4)
 		{

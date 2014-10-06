@@ -25,6 +25,8 @@
     
     if (self)
     {
+        console.log(_settings);
+        console.log(mainBundle);
         views = [];
         serverActivities = 0;
         image2 = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"spinner2.gif"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];

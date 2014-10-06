@@ -1,0 +1,28 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    <meta http-equiv="Content-Type" content="text/html; charset="UTF-8" />
+    %meta{:content => "IE=EmulateIE7", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=320,initial-scale=1.0,maximum-scale=1.0,user-scalable=0", :name => "viewport"}/
+    %title Lucid Dream TribalSketch
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    
+    :javascript
+      thumb = [];
+      //OBJJ_MAIN_FILE = "/js/main.j";
+      //OBJJ_MAIN_FILE = "#{asset_path('main.j')}" ;		//"/js/Build/Debug/ODT/main.j"
+      ///init application global parameters
+      _style = {"width":400,"height":400};
+      _lang = {"name": "en"};
+
+    / <script type="text/javascript" src="/js/Frameworks/Objective-J/Objective-J.js" charset="UTF-8"></script>
+    / <script type="text/javascript" src="/js/Build/Debug/ODT/Frameworks/Objective-J/Objective-J.js" charset="UTF-8"></script>
+
+    /[if lt IE 7]
+      <style type="text/css">
+      \#container { position: relative; top: 50%; }
+      \#content { position: relative;}
+      </style>
+  %body
+    = yield

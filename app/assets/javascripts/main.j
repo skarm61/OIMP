@@ -14,11 +14,12 @@
 mainBundle = nil;
 _browser = 'default';
 ajax = nil;
+_settings = {};
 
 function main(args, namedArgs)
 {
     mainBundle = [CPBundle mainBundle];
-	_lang = initLanguage(_lang.name);
+    _lang = initLanguage(_lang.name);
     _settings = initSettings();
 
     CPApplicationMain(args, namedArgs);
@@ -27,27 +28,28 @@ function main(args, namedArgs)
 ///init language
 function initLanguage(lang)
 {
-	ajax = [[Ajax alloc] init];
+  ajax = [[Ajax alloc] init];
 
-	var parameters = {
-		type: 'get',
-		url: [mainBundle pathForResource:@"languages/" + lang + ".json"],
-		async: false,
-		success: function(data)
-		{
-			if (data != '')
-			{
-				lang = eval("(" + data + ")");
-			}
-			else
-				lang = false;
-		}
-	};
-	lang = false;
-	
-	[ajax get:parameters];
-	
-	return lang;
+  var parameters = {
+    type: 'get',
+    url: '/js/Resources/languages/en.json',
+    //[mainBundle pathForResource:@"languages/" + lang + ".json"],
+    async: false,
+    success: function(data)
+    {
+      if (data != '')
+      {
+        lang = eval("(" + data + ")");
+      }
+      else
+        lang = false;
+    }
+  };
+  lang = false;
+  
+  [ajax get:parameters];
+  
+  return lang;
 }
 
 ///init settings depend on browser
@@ -69,22 +71,23 @@ function initSettings()
         _browser = 'mobile';
     //document.title = document.title + ' browser:' + _browser;
 
-	var parameters = {
-		type: 'get',
-		url: [mainBundle pathForResource:@"settings/" + _browser + ".json"],
-		async: false,
-		success: function(data)
-		{
-			if (data != '')
-			{
-				_settings = eval("(" + data + ')');
-			}
-			else
-				_settings = false;
-		}
-	};
-	_settings = false;
+  var parameters = {
+    type: 'get',
+    url: '/js/Resources/settings/' + _browser + '.json',
+    //[mainBundle pathForResource:@"settings/" + _browser + ".json"],
+    async: false,
+    success: function(data)
+    {
+      if (data != '')
+      {
+        _settings = eval("(" + data + ')');
+      }
+      else
+        _settings = false;
+    }
+  };
+  _settings = false;
 
-	[ajax get:parameters];
-	return _settings;
+  [ajax get:parameters];
+  return _settings;
 }
