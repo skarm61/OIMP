@@ -14,9 +14,9 @@ var commonPageView = nil;
     CPArray                 layerThumbs;
 }
 - (id)initWithPageView:(PageView)aView
-{    
+{
     self = [super initWithFrame:CGRectMake(0, 0, 200, 200)];
-    
+
     if (self)
     {
         var bounds = [self bounds];
@@ -70,7 +70,7 @@ var commonPageView = nil;
     layerThumbs = [];
     for (i = 0; i < [layers count]; i++)
     {
-        var image = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"layer_bg.png"]];
+        var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/layer_bg.png"]];
 	[layerThumbs addObject:image];
     }
     [layersView setContent:layerThumbs];

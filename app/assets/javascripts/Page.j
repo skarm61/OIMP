@@ -5,7 +5,7 @@
  * Created by Nickolay Kondratenko <devmarkup@gmail.com>
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
- 
+
 @import "PageElement.j"
 
 @implementation Page : CPObject
@@ -17,7 +17,7 @@
 - (id)init
 {
     self = [super init];
-    
+
     if (self)
     {
     }

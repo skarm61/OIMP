@@ -28,12 +28,12 @@
     CPString	imageName;
     CGPoint     basePosition;
     CGPoint     tmpOffset;
-    
+
     CPImage     _image;
     CALayer     _imageLayer;
-    
+
     PageView    _pageView;
-	
+
     ImageAttributes imageAttributes;
 }
 
@@ -44,30 +44,30 @@
 - (id)initWithPageView:(PageView)anPageView
 {
     self = [super init];
-    
+
     if (self)
     {
         _pageView = anPageView;
-        
+
         _rotationRadians = 0.0;
         _scaleX = 1.0;
         _scaleY = 1.0;
         _positionX = 0.0;
         _positionY = 0.0;
-        
+
         _imageLayer = [CALayer layer];
 		[self setBackgroundColor:[CPColor blueColor]];
         [_imageLayer setDelegate:self];
-        
-        
+
+
         [self addSublayer:_imageLayer];
 		basePosition = [_imageLayer position];
 
         [self redisplay];
 		[self initImageAttributes];
     }
-    
-	
+
+
     return self;
 }
 
@@ -84,7 +84,7 @@
 - (void)setBounds:(CGRect)aRect
 {
     [super setBounds:aRect];
-    
+
     [_imageLayer setPosition:CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect))];
 }
 
@@ -95,10 +95,10 @@
 
     _image = anImage;
 	[self setImageAttributes];
-    
+
     if (_image)
         [_imageLayer setBounds:CGRectMake(0.0, 0.0, [_image size].width, [_image size].height)];
-    
+
     [_imageLayer setNeedsDisplay];
     [self setScaleX:_scaleX];
     [self setScaleY:_scaleY];
@@ -120,7 +120,7 @@
 {
     if (_rotationRadians == radians)
         return;
-        
+
     _rotationRadians = radians;
 
     [self redisplay];
@@ -135,9 +135,9 @@
 {
     if (_scaleX == aScale)
         return;
-    
+
     _scaleX = aScale;
-    
+
     [self redisplay];
 }
 
@@ -216,7 +216,7 @@
 - (void)drawLayer:(CALayer)aLayer inContext:(CGContext)aContext
 {
     var bounds = [aLayer bounds];
-    
+
     if ([_image loadStatus] != CPImageLoadStatusCompleted)
         [_image setDelegate:self];
     else
@@ -268,30 +268,30 @@
 - (id)initWithFrame:(CGRect)aFrame
 {
     self = [super initWithFrame:aFrame];
-    
+
     commonBounds = CGRectMake(0.0, 0.0, CGRectGetWidth(aFrame), CGRectGetHeight(aFrame));
     commonSize = CGSizeMake(CGRectGetWidth(aFrame), CGRectGetHeight(aFrame));
-    
+
     if (self)
     {
         layers = [];
         design = [[Design alloc] initWithView:self];
         _rootLayer = [CALayer layer];
-        
+
         [self setWantsLayer:YES];
         [self setLayer:_rootLayer];
-        
+
         ///background layer
         _bgLayer = [[BgLayer alloc] init];
         [_bgLayer setBounds:commonBounds];
         [_bgLayer setAnchorPoint:CGPointMakeZero()];
-        [_bgLayer setImage:[[CPImage alloc] initWithContentsOfFile:@"images/layer_bg.png" size:commonSize]];
-        
+        [_bgLayer setImage:[[CPImage alloc] initWithContentsOfFile:"/js/Resources/layer_bg.png" size:commonSize]];
+
         [_rootLayer addSublayer:_bgLayer];
         [_bgLayer setNeedsDisplay];
 
         [_rootLayer setDelegate:self];
-        
+
         [self registerForDraggedTypes:[PhotoDragType]];
         [self registerForDraggedTypes:[TemplateDragType]];
 
@@ -301,7 +301,7 @@
         [sidebar addView:layerInspector title:@"layers"];
         [layerInspector loadThumbs:layers];
     }
-    
+
     return self;
 }
 
@@ -377,7 +377,7 @@
 - (void)setActive:(BOOL)isActive
 {
     _isActive = isActive;
-    
+
     //[_borderLayer setNeedsDisplay];
 }
 
@@ -402,7 +402,7 @@
     {
         [design loadCurrentPage:template];
         [layerInspector loadThumbs:layers];
-        
+
 //        var frame = [[CPImage alloc] initWithContentsOfFile:([frame filename]).replace('_thumb', '_pane')];
 //        [frame setSize:commonSize];
 //        [_borderLayer setImage:frame];
@@ -424,7 +424,7 @@
 {
     [self clear];
     var elements = [page elements];
-    for (i = 0; i < [elements count]; i++)
+    for (var i = 0; i < [elements count]; i++)
     {
         [self addLayer:elements[i]];
     }
@@ -467,7 +467,7 @@
 
     [layer setNeedsDisplay];
     [layer setDelegate:self];
-    
+
 }
 
 - (void)removeCurrentLayer
@@ -478,7 +478,7 @@
 - (void)removeLayer:(int)anIndex
 {
     var tmp = [];
-    for (i = 0; i < [layers count]; i++)
+    for (var i = 0; i < [layers count]; i++)
     {
         if (i == anIndex)
         {
@@ -496,7 +496,7 @@
 
 - (void)clear
 {
-    for (i = 0; i < [layers count]; i++)
+    for (var i = 0; i < [layers count]; i++)
     {
         [layers[i] removeFromSuperlayer];
 

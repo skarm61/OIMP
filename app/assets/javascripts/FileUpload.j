@@ -19,27 +19,27 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
     DOMElement      _DOMIFrameElement;
     DOMElement      _fileUploadElement;
     DOMElement      _uploadForm;
-    
+
     function        _mouseMovedCallback;
     function        _mouseUpCallback;
-    
+
     id              _delegate;
-        
+
     CPDictionary    _parameters;
-	
+
 	PhotoPanel		photoPanel;
 }
 
 - (id)initWithFrame:(CGRect)aFrame
 {
     self = [super initWithFrame:aFrame];
-    
+
     if (self)
     {
         var hash = [self hash];
-        
+
         _uploadForm = document.createElement("form");
-        
+
         _uploadForm.method = "POST";
         _uploadForm.action = "#";
 
@@ -47,24 +47,24 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
             _uploadForm.encoding = "multipart/form-data";
         else
             _uploadForm.enctype = "multipart/form-data";
-        
+
         _fileUploadElement = document.createElement("input");
-        
+
         _fileUploadElement.type = "file";
         _fileUploadElement.name = "file";
         _fileUploadElement.style.height = CGRectGetHeight(aFrame) + 'px';
-        
+
         _fileUploadElement.onmousedown = function(aDOMEvent)
-        {    
+        {
             aDOMEvent = aDOMEvent || window.event;
-            
+
             var x = aDOMEvent.clientX,
                 y = aDOMEvent.clientY,
                 theWindow = [self window];
-            
+
             [CPApp sendEvent:[CPEvent mouseEventWithType:CPLeftMouseDown location:[theWindow convertBridgeToBase:CGPointMake(x, y)]
                 modifierFlags:0 timestamp:0 windowNumber:[theWindow windowNumber] context:nil eventNumber:-1 clickCount:1 pressure:0]];
-            
+
             if (document.addEventListener)
             {
                 document.addEventListener(CPDOMEventMouseUp, _mouseUpCallback, NO);
@@ -89,62 +89,62 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
                 document.detachEvent("on" + CPDOMEventMouseUp, _mouseUpCallback);
                 document.detachEvent("on" + CPDOMEventMouseMoved, _mouseMovedCallback);
             }
-            
+
             aDOMEvent = aDOMEvent || window.event;
-            
+
             var x = aDOMEvent.clientX,
                 y = aDOMEvent.clientY,
                 theWindow = [self window];
-            
+
             [CPApp sendEvent:[CPEvent mouseEventWithType:CPLeftMouseUp location:[theWindow convertBridgeToBase:CGPointMake(x, y)]
                modifierFlags:0 timestamp:0 windowNumber:[theWindow windowNumber] context:nil eventNumber:-1 clickCount:1 pressure:0]];
         }
-        
+
         _mouseMovedCallback = function(aDOMEvent)
         {
             //ASSERT(mouse is down)
-            
+
             aDOMEvent = aDOMEvent || window.event;
-            
+
             var x = aDOMEvent.clientX,
                 y = aDOMEvent.clientY,
                 theWindow = [self window];
-            
+
             [CPApp sendEvent:[CPEvent mouseEventWithType:CPLeftMouseDragged location:[theWindow convertBridgeToBase:CGPointMake(x, y)]
                modifierFlags:0 timestamp:0 windowNumber:[theWindow windowNumber] context:nil eventNumber:-1 clickCount:1 pressure:0]];
         }
-        
+
         _uploadForm.style.position = "absolute";
 		//_uploadForm.style.backgroundColor = "#f00";
         _uploadForm.style.top = "0px";
         _uploadForm.style.left = "0px";
         _uploadForm.style.zIndex = 1000;
-        
+
         _fileUploadElement.style.opacity = "0";
         _fileUploadElement.style.filter = "alpha(opacity=0)";
-        
+
         _uploadForm.style.width = "100%";
         _uploadForm.style.height = "100%";
-        
+
         //_fileUploadElement.style.fontSize = "1000px";
-        
+
         _fileUploadElement.style.position = "absolute";
         _fileUploadElement.style.right = 0;
-                       
+
         _fileUploadElement.onchange = function()
         {
             [self uploadSelectionDidChange: _fileUploadElement.value];
         };
-        
+
         _uploadForm.appendChild(_fileUploadElement);
-        
+
         _DOMElement.appendChild(_uploadForm);
-        
+
         _parameters = [CPDictionary dictionary];
-        
+
         [self setBordered:NO];
     }
-    
+
     return self;
 }
 
@@ -188,7 +188,7 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
 	[self setTitle:_lang.upload_images_button1];
 	if ([_delegate respondsToSelector:@selector(uploadButton:didFinishUploadWithData:)])
         [_delegate uploadButton: self didFinishUploadWithData: response];
-    
+
 }
 
 - (void)uploadDidFailWithError:(CPString)anError
@@ -202,9 +202,9 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
 {
     if(aParam == "file")
         return NO;
-        
+
     [_parameters setObject:aValue forKey:aParam];
-    
+
     return YES;
 }
 
@@ -223,21 +223,21 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
     //remove existing parameters
     var index = _uploadForm.childNodes.length;
     while(index--)
-        _uploadForm.removeChild(_uploadForm.childNodes[index]);    
-    
+        _uploadForm.removeChild(_uploadForm.childNodes[index]);
+
     //append the parameters to the form
     var keys = [_parameters allKeys];
     for(var i = 0, count = keys.length; i<count; i++)
     {
         var element = document.createElement("input");
-        
+
         element.type = "hidden";
         element.name = keys[i];
         element.value = [_parameters objectForKey:keys[i]];
-        
+
         _uploadForm.appendChild(element);
     }
-    
+
     _uploadForm.appendChild(_fileUploadElement);
 
     if(_DOMIFrameElement)
@@ -246,7 +246,7 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
         _DOMIFrameElement.onload = nil;
         _DOMIFrameElement = nil;
     }
-    
+
     if(window.attachEvent)
     {
         //_DOMIFrameElement = document.createElement("<iframe id=\"" + _uploadForm.target + "\" name=\"" + _uploadForm.target + "\" />");
@@ -255,31 +255,31 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
 		_DOMIFrameElement.name = _uploadForm.target;
         if(window.location.href.toLowerCase().indexOf("https") === 0)
             _DOMIFrameElement.src = "javascript:false";
-		
+
     }
     else
     {
         _DOMIFrameElement = document.createElement("iframe");
-        _DOMIFrameElement.name = _uploadForm.target;    
+        _DOMIFrameElement.name = _uploadForm.target;
     }
-        
+
     _DOMIFrameElement.style.width = "1px";
     _DOMIFrameElement.style.height = "1px";
     _DOMIFrameElement.style.zIndex = -1000;
     _DOMIFrameElement.style.opacity = "0";
     _DOMIFrameElement.style.filter = "alpha(opacity=0)";
-    
+
     document.body.appendChild(_DOMIFrameElement);
 
     _onloadHandler = function()
     {
-        try 
+        try
         {
-            var responseText = _DOMIFrameElement.contentWindow.document.body ? _DOMIFrameElement.contentWindow.document.body.innerHTML : 
+            var responseText = _DOMIFrameElement.contentWindow.document.body ? _DOMIFrameElement.contentWindow.document.body.innerHTML :
                                                                                _DOMIFrameElement.contentWindow.document.documentElement.textContent;
 
             [self uploadDidFinishWithResponse: responseText];
-            
+
             window.setTimeout(function(){
                 document.body.removeChild(_DOMIFrameElement);
                 _DOMIFrameElement.onload = nil;
@@ -290,11 +290,11 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
         {
             [self uploadDidFailWithError:e];
         }
-    }    
-        
+    }
+
     if (window.attachEvent)
     {
-        _DOMIFrameElement.onreadystatechange = function() 
+        _DOMIFrameElement.onreadystatechange = function()
         {
             if (this.readyState == "loaded" || this.readyState == "complete")
                 _onloadHandler();
@@ -305,7 +305,7 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
 
     _uploadForm.submit();
 	_uploadForm.reset();
-	
+
     if ([_delegate respondsToSelector:@selector(uploadButtonDidBeginUpload:)])
         [_delegate uploadButtonDidBeginUpload:self];
 }
@@ -338,9 +338,9 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
 function _CPGUID()
 {
     var g = "";
-    
+
     for(var i = 0; i < 32; i++)
         g += Math.floor(Math.random() * 0xF).toString(0xF);
-        
+
     return g;
 }

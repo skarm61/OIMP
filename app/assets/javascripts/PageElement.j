@@ -16,7 +16,7 @@
 - (id)initWithTemplate : (JSON)template
 {
     self = [super init];
-    
+
     if (self)
     {
         type = template.type;

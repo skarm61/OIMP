@@ -17,7 +17,7 @@
 -(id)init
 {
 	self = [super init];
-	
+
 	if (self)
 	{
         var image = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"download.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];

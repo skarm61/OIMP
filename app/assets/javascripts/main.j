@@ -46,9 +46,9 @@ function initLanguage(lang)
     }
   };
   lang = false;
-  
+
   [ajax get:parameters];
-  
+
   return lang;
 }
 

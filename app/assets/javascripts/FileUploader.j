@@ -5,7 +5,7 @@
  * Created by Nickolay Kondratenko <devmarkup@gmail.com>
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
- 
+
 @import <AppKit/CPPanel.j>
 @import "FileUpload.j"
 
@@ -35,13 +35,13 @@
             [browseButton setTarget:self];
             [browseButton setAction:@selector(upload:)];
         }
-		
+
 		[browseButton setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin];
-        var image = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"upload.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
+        var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/upload.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
 		[browseButton setImage:image];
-		
+
 		[[[toolbar items][1]  view] addSubview:browseButton];
-		
+
     }
 
     return self;

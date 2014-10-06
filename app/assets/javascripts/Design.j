@@ -18,7 +18,7 @@
 - (id)initWithView : (PageView)aView
 {
     self = [super init];
-    
+
     if (self)
     {
         var page = [[Page alloc] init];
@@ -50,7 +50,7 @@
 }
 
 - (void)addPage : (Page)aPage toPlace : (int)number
-{   
+{
 }
 
 - (void)loadCurrentPage : (JSON)template

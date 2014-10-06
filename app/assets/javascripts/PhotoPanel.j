@@ -22,26 +22,26 @@ PhotoDragType = "PhotoDragType";
     self = [super initWithFrame:aFrame];
 
     if (self)
-    {   
+    {
         var bounds = [self bounds];
-        
+
         bounds.size.height -= _settings.sidebarPaddingB;
-        
+
         photosView = [[CPCollectionView alloc] initWithFrame:bounds];
-        
+
         [photosView setAutoresizingMask:CPViewWidthSizable];
         [photosView setMinItemSize:CGSizeMake(_settings.thumbSize, _settings.thumbSize)];
         [photosView setMaxItemSize:CGSizeMake(_settings.thumbSize, _settings.thumbSize)];
         [photosView setDelegate:self];
-        
+
         var itemPrototype = [[CPCollectionViewItem alloc] init];
-        
+
         [itemPrototype setView:[[PhotoView alloc] initWithFrame:CGRectMakeZero()]];
-        
+
         [photosView setItemPrototype:itemPrototype];
-        
+
         var scrollView = [[CPScrollView alloc] initWithFrame:bounds];
-        
+
         [scrollView setDocumentView:photosView];
         [scrollView setAutoresizingMask:CPViewWidthSizable | CPViewHeightSizable];
         [scrollView setAutohidesScrollers:YES];
@@ -49,13 +49,13 @@ PhotoDragType = "PhotoDragType";
         //[[scrollView contentView] setBackgroundColor:[CPColor whiteColor]];
 
         [self addSubview:scrollView];
-        
-                    
+
+
 		///loading images
 		images = [];
 		[self loadImages];
 		[photosView setContent:images];
-		
+
     }
 
     return self;
@@ -130,13 +130,13 @@ PhotoDragType = "PhotoDragType";
     if (!_imageView)
     {
         _imageView = [[CPImageView alloc] initWithFrame:CGRectInset([self bounds], 5.0, 5.0)];
-        
+
         [_imageView setImageScaling:CPScaleProportionally];
         [_imageView setAutoresizingMask:CPViewWidthSizable | CPViewHeightSizable];
-        
+
         [self addSubview:_imageView];
     }
-    
+
     [_imageView setImage:anObject];
 }
 

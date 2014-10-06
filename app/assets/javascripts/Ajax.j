@@ -7,7 +7,7 @@
  */
 
 @import <Foundation/CPObject.j>
- 
+
 @implementation Ajax : CPObject
 {
 	id		ajaxObject;
@@ -67,8 +67,11 @@
 		{
 			try
 			{
-				var oXmlHttp = new ActiveXObject(aVersions[i]);
-				return oXmlHttp;
+    //     console.log(i);
+    //     console.log(window.ActiveXObject);
+				// var _oXmlHttp = new ActiveXObject(aVersions[i]);
+        var _oXmlHttp;
+				return _oXmlHttp;
 			}
 			catch (oError)
 			{

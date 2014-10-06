@@ -22,15 +22,13 @@
 - (id)init
 {
     self = [super init];
-    
+
     if (self)
     {
-        console.log(_settings);
-        console.log(mainBundle);
         views = [];
         serverActivities = 0;
-        image2 = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"spinner2.gif"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
-        image1 = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"server.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
+        image2 = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/spinner2.gif"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
+        image1 = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/server.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
     }
     return self;
 }

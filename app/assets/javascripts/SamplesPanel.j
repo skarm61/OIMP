@@ -5,11 +5,11 @@
  * Created by Nickolay Kondratenko <devmarkup@gmail.com>
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
- 
+
  @import "Ajax.j"
 
 TemplateDragType = "TemplateDragType";
- 
+
 @implementation SamplesPanel : CPView
 {
 	CPArray                 templates;
@@ -21,30 +21,30 @@ TemplateDragType = "TemplateDragType";
 {
     self = [super initWithFrame:aFrame];
     if (self)
-    {   
+    {
         var bounds = [self bounds];
         bounds.size.height -= _settings.sidebarPaddingB;
-			
+
         photosView = [[CPCollectionView alloc] initWithFrame:bounds];
-        
+
         [photosView setAutoresizingMask:CPViewWidthSizable];
         [photosView setMinItemSize:CGSizeMake(_settings.thumbSize, _settings.thumbSize)];
         [photosView setMaxItemSize:CGSizeMake(_settings.thumbSize, _settings.thumbSize)];
         [photosView setDelegate:self];
-		
+
         var itemPrototype = [[CPCollectionViewItem alloc] init];
-        
+
         [itemPrototype setView:[[PhotoView alloc] initWithFrame:CGRectMakeZero()]];
-        
+
         [photosView setItemPrototype:itemPrototype];
-        
+
         var scrollView = [[CPScrollView alloc] initWithFrame:bounds];
-        
+
         [scrollView setDocumentView:photosView];
         [scrollView setAutoresizingMask:CPViewWidthSizable | CPViewHeightSizable];
         [scrollView setAutohidesScrollers:YES];
         [scrollView setHasVerticalScroller:_settings.sidebarHasScroller];
-		
+
         [self addSubview:scrollView];
 
         var styleName = _style.name || "";

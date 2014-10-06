@@ -5,7 +5,12 @@
  * Created by Nickolay Kondratenko <devmarkup@gmail.com>
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
- 
+
+serverIndicator = nil;
+photoPanel = nil;
+windowWidth = 0;
+sidebar = nil;
+
 @import <Foundation/CPObject.j>
 @import "ServerIndicator.j"
 @import "Toolbar.j"
@@ -13,11 +18,6 @@
 @import "Sidebar.j"
 @import "PageView.j"
 @import "FileUploader.j"
-
-serverIndicator = nil;
-photoPanel = nil;
-windowWidth = 0;
-sidebar = nil;
 
 @implementation AppController : CPObject
 {

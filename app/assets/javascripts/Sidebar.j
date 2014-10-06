@@ -5,10 +5,10 @@
  * Created by Nickolay Kondratenko <devmarkup@gmail.com>
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
- 
+
  @import <AppKit/CPAccordionView.j>
  @import "PhotoPanel.j"
- 
+
 @implementation Sidebar : CPPanel
 {
     CPAccordionView     accordion;
@@ -26,7 +26,7 @@
     {
         [self setTitle:@"sidebar"];
         [self setFloatingPanel:YES];
-        
+
         var contentView = [self contentView],
             bounds = [contentView bounds];
 

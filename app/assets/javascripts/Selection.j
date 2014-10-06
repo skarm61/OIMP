@@ -41,7 +41,7 @@ RESIZING_LEFT   = 34;
         layer = [[SelectionView alloc] initWithRootLayer:rootLayer];
         bounds = [rootLayer bounds];
     }
-    
+
     return self;
 }
 

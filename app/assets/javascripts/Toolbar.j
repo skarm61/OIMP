@@ -91,7 +91,7 @@ toolbar = nil;
     }
     else if (anItemIdentifier == ServerToolbarItemIdentifier)
     {
-        var image = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"server.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
+        var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/server.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
         [toolbarItem setImage:image];
         [toolbarItem setEnabled:false];
         [toolbarItem setLabel:_lang.server_indicator];
