@@ -5,6 +5,9 @@
  * Created by Nickolay Kondratenko <devmarkup@gmail.com>
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
+ 
+@global _settings;
+@global photoPanel;
 
  @import <AppKit/CPAccordionView.j>
  @import "PhotoPanel.j"
@@ -31,7 +34,7 @@
             bounds = [contentView bounds];
 
         ///accordion
-        var accordion = [[CPAccordionView alloc] initWithFrame:bounds];
+        var _accordion = [[CPAccordionView alloc] initWithFrame:bounds];
         var firstItem = [[CPAccordionViewItem alloc] initWithIdentifier:"photos"];
         photoPanel = [[PhotoPanel alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
         [firstItem setView:photoPanel];
@@ -41,11 +44,11 @@
         [secondItem setView:[[SamplesPanel alloc] initWithFrame:CGRectMake(0, 0, 200, 200)]];
         [secondItem setLabel:_lang.frame_styles_panel];
 
-        [accordion addItem:firstItem];
-        [accordion addItem:secondItem];
+        [_accordion addItem:firstItem];
+        [_accordion addItem:secondItem];
 
-        [accordion setAutoresizingMask: CPViewWidthSizable | CPViewHeightSizable];
-        [contentView addSubview:accordion];
+        [_accordion setAutoresizingMask: CPViewWidthSizable | CPViewHeightSizable];
+        [contentView addSubview:_accordion];
     }
 
     return self;

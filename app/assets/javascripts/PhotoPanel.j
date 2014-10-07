@@ -7,6 +7,8 @@
  */
 
  @import "Ajax.j"
+@global _settings;
+@global ajax;
 
 
 PhotoDragType = "PhotoDragType";
@@ -79,7 +81,7 @@ PhotoDragType = "PhotoDragType";
                      */
 					if (images.length)///if images list is not empty
 					{
-						for (i = images.length; i < imagesObject.files.length; i++)
+						for (var i = images.length; i < imagesObject.files.length; i++)
 						{
 							var url = imagesObject.path + 'thumb_' + imagesObject.files[i];
 							var image = [[CPImage alloc] initWithContentsOfFile:url];
@@ -88,7 +90,7 @@ PhotoDragType = "PhotoDragType";
 					}
 					else
 					{
-						for (i = 0; i < imagesObject.files.length; i++)
+						for (var i = 0; i < imagesObject.files.length; i++)
 						{
 							var url = imagesObject.path + 'thumb_' + imagesObject.files[i];
 							var image = [[CPImage alloc] initWithContentsOfFile:url];

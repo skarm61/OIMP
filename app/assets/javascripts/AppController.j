@@ -6,11 +6,14 @@
  * Copyright 2011, EZ Intelligence All rights reserved.
  */
 
-serverIndicator = nil;
-photoPanel = nil;
+@global serverIndicator;
+@global photoPanel;
 windowWidth = 0;
-sidebar = nil;
+@global sidebar;
+@global _settings;
 
+@import <Foundation/Foundation.j>
+@import <AppKit/AppKit.j>
 @import <Foundation/CPObject.j>
 @import "ServerIndicator.j"
 @import "Toolbar.j"

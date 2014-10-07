@@ -10,6 +10,8 @@
 @import <Foundation/CPValue.j>
 @import <Foundation/CPException.j>
 
+@global serverIndicator;
+
 var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
     UPLOAD_FORM_PREFIX = "UPLOAD_FORM_",
     UPLOAD_INPUT_PREFIX = "UPLOAD_INPUT_";
@@ -271,7 +273,7 @@ var UPLOAD_IFRAME_PREFIX = "UPLOAD_IFRAME_",
 
     document.body.appendChild(_DOMIFrameElement);
 
-    _onloadHandler = function()
+    var _onloadHandler = function()
     {
         try
         {

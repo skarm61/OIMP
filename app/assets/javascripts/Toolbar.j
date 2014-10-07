@@ -6,6 +6,8 @@
  * Copyright 2010, EZ Intelligence All rights reserved.
  */
 
+@global _settings;
+
 @import <Foundation/CPObject.j>
 @import "FileUpload.j"
 

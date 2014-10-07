@@ -7,6 +7,7 @@
  */
 
 var commonPageView = nil;
+@global _settings;
 
 @implementation LayerInspector : CPView
 {
@@ -68,7 +69,7 @@ var commonPageView = nil;
 - (void)loadThumbs : (CPArray)layers
 {
     layerThumbs = [];
-    for (i = 0; i < [layers count]; i++)
+    for (var i = 0; i < [layers count]; i++)
     {
         var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/layer_bg.png"]];
 	[layerThumbs addObject:image];

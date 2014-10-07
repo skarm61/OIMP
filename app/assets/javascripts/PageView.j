@@ -17,6 +17,9 @@
 @import "Design.j"
 @import "LayerInspector.j"
 
+@global _settings;
+@global sidebar;
+
 
 @implementation PaneLayer : CALayer
 {
@@ -52,8 +55,8 @@
         _rotationRadians = 0.0;
         _scaleX = 1.0;
         _scaleY = 1.0;
-        _positionX = 0.0;
-        _positionY = 0.0;
+        var _positionX = 0.0;
+        var _positionY = 0.0;
 
         _imageLayer = [CALayer layer];
 		[self setBackgroundColor:[CPColor blueColor]];
@@ -282,7 +285,7 @@
         [self setLayer:_rootLayer];
 
         ///background layer
-        _bgLayer = [[BgLayer alloc] init];
+        var _bgLayer = [[BgLayer alloc] init];
         [_bgLayer setBounds:commonBounds];
         [_bgLayer setAnchorPoint:CGPointMakeZero()];
         [_bgLayer setImage:[[CPImage alloc] initWithContentsOfFile:"/js/Resources/layer_bg.png" size:commonSize]];

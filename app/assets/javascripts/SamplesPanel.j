@@ -7,6 +7,9 @@
  */
 
  @import "Ajax.j"
+ @import "PhotoPanel.j"
+@global _settings;
+@global ajax;
 
 TemplateDragType = "TemplateDragType";
 
@@ -17,7 +20,7 @@ TemplateDragType = "TemplateDragType";
 	CPCollectionView	photosView;
 }
 
-- (id)initWithFrame:(CGPoint)aFrame
+- (id)initWithFrame:(CGRect)aFrame
 {
     self = [super initWithFrame:aFrame];
     if (self)
@@ -66,7 +69,7 @@ TemplateDragType = "TemplateDragType";
     }
     else
     {
-        var ajax = [[Ajax alloc] init];
+        ajax = [[Ajax alloc] init];
         var parameters = {
             type: 'get',
             url: '/data_rendering/styles',
@@ -77,10 +80,10 @@ TemplateDragType = "TemplateDragType";
                 thumbs = [];
                 if (data != '')
                 {
-                    stylesList = eval("(" + data + ')');
+                    var stylesList = eval("(" + data + ')');
                     if (stylesList)
                     {
-                        for (i = 0; i < stylesList.length; i++)
+                        for (var i = 0; i < stylesList.length; i++)
                         {
                             ///try to load style.json file
                             var parameters = {

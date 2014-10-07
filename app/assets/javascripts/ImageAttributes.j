@@ -7,6 +7,9 @@
  */
 
 @import <AppKit/CPWindowController.j>
+@global _settings;
+@global serverIndicator;
+
 
 @implementation ImageAttributes : CPObject
 {
@@ -20,7 +23,7 @@
 
 	if (self)
 	{
-        var image = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"download.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
+        var image = [[CPImage alloc] initWithContentsOfFile:["js/Resources/download.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
 
         var toolbarItem = [toolbar items][3];
 		[toolbarItem setImage:image];
@@ -53,7 +56,7 @@
         form.action = '/save/index';
         form.style.display = 'none';
 
-        for (n in attributes)
+        for (var n in attributes)
         {
             var text = document.createElement('input');
             text.type = 'hidden';
@@ -62,7 +65,7 @@
             form.appendChild(text);
         }
 
-        iframe = document.createElement('iframe');
+        var iframe = document.createElement('iframe');
         iframe.style.display = 'none';
 
         document.body.appendChild(iframe);

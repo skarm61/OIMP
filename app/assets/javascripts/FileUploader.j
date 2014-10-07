@@ -9,6 +9,9 @@
 @import <AppKit/CPPanel.j>
 @import "FileUpload.j"
 
+@global _settings;
+@global _browser;
+
 @implementation FileUploader : CPObject
 {
 	UploadButton    browseButton;
@@ -30,7 +33,7 @@
 		[browseButton setTitle:_lang.upload_images_button1];
 		[browseButton setURL:@"/translator/index"];
 		[browseButton setName:@"file"];
-        if (__browser.iphone)
+        if (_browser.iphone)
         {
             [browseButton setTarget:self];
             [browseButton setAction:@selector(upload:)];

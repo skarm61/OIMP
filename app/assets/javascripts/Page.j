@@ -27,7 +27,7 @@
 - (void)load : (JSON)template
 {
     elements = [];
-    for (i = 0; i < template.elements.length; i++)
+    for (var i = 0; i < template.elements.length; i++)
     {
         (template.elements[i]).folder = template.name;
         var element = [[PageElement alloc] initWithTemplate:template.elements[i]];

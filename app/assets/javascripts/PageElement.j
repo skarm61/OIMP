@@ -66,7 +66,7 @@
 {
     attributes['scaleX'] = scale;
 }
-
+//}
 
 - (void)setScaleY : (float)scale
 {

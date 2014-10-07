@@ -15,6 +15,7 @@ RESIZING_TOP    = 31,
 RESIZING_RIGHT  = 32,
 RESIZING_BOTTOM = 33,
 RESIZING_LEFT   = 34;
+@global _settings;
 
 @implementation Selection : CPObject
 {
@@ -62,8 +63,8 @@ RESIZING_LEFT   = 34;
 
             ///count start angle
             ///center point coordinates
-            centerX = (startPoint.x + endPoint.x)/2;
-            centerY = (startPoint.y + endPoint.y)/2;
+            var centerX = (startPoint.x + endPoint.x)/2;
+            var centerY = (startPoint.y + endPoint.y)/2;
             startAngle = Math.atan((centerX - aPoint.x)/(centerY - aPoint.y));
         }
         else if (action >= RESIZING_TOP && action <= RESIZING_LEFT)///any resizing
@@ -135,8 +136,8 @@ RESIZING_LEFT   = 34;
         {
             ///counting angle
             ///center point coordinates
-            centerX = (startPoint.x + endPoint.x)/2;
-            centerY = (startPoint.y + endPoint.y)/2;
+            var centerX = (startPoint.x + endPoint.x)/2;
+            var centerY = (startPoint.y + endPoint.y)/2;
             var currentAngle = Math.atan((centerX - aPoint.x)/(centerY - aPoint.y));
             if ((centerY - aPoint.y) < 0)
             {
@@ -217,7 +218,7 @@ RESIZING_LEFT   = 34;
         var y1 = endPoint.y,
             y2 = startPoint.y;
     }
-    dXY = _settings.rotationRadius/Math.sqrt(2);
+    var dXY = _settings.rotationRadius/Math.sqrt(2);
     rotationPoint = CGPointMake(x1-dXY, y1-dXY);
     dRotationPoint = rotationPoint;
     [self redraw];

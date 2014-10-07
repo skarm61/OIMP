@@ -12,17 +12,18 @@
 @import "Ajax.j"
 
 mainBundle = nil;
-_browser = 'default';
-ajax = nil;
-_settings = {};
+@global _browser;
+@global ajax;
+@global _settings; // = {};
 
 function main(args, namedArgs)
 {
-    mainBundle = [CPBundle mainBundle];
-    _lang = initLanguage(_lang.name);
-    _settings = initSettings();
+  _browser = 'default'
+  mainBundle = [CPBundle mainBundle];
+  _lang = initLanguage(_lang.name);
+  _settings = initSettings();
 
-    CPApplicationMain(args, namedArgs);
+  CPApplicationMain(args, namedArgs);
 }
 
 ///init language
@@ -56,7 +57,7 @@ function initLanguage(lang)
 function initSettings()
 {
     var _ua = navigator.userAgent.toLowerCase();
-    __browser = {
+    _browser = {
         opera: /opera/i.test(_ua),
         msie: (!this.opera && /msie/i.test(_ua)),
         mozilla: /firefox/i.test(_ua),
@@ -73,7 +74,7 @@ function initSettings()
 
   var parameters = {
     type: 'get',
-    url: '/js/Resources/settings/' + _browser + '.json',
+    url: '/js/Resources/settings/default.json',
     //[mainBundle pathForResource:@"settings/" + _browser + ".json"],
     async: false,
     success: function(data)
