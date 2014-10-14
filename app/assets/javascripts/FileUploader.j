@@ -11,6 +11,7 @@
 
 @global _settings;
 @global _browser;
+@global toolbar;
 
 @implementation FileUploader : CPObject
 {
@@ -42,6 +43,9 @@
 		[browseButton setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin];
         var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/upload.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
 		[browseButton setImage:image];
+        var tmp = [toolbar items];
+        console.log(tmp);
+        console.log(toolbar);
 
 		[[[toolbar items][1]  view] addSubview:browseButton];
 

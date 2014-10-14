@@ -11,6 +11,7 @@
 windowWidth = 0;
 @global sidebar;
 @global _settings;
+@global toolbar;
 
 @import <Foundation/Foundation.j>
 @import <AppKit/AppKit.j>
@@ -45,13 +46,13 @@ windowWidth = 0;
     [w2 setLevel:5];
     windowWidth = CGRectGetWidth(bounds);
 
+    ///a toolbar
+    toolbar = [[Toolbar alloc] initWithWindow:w2];
+
     ///here place components which are to be on the window
 
     ///init serverIndicator - an indicator of server activity
     serverIndicator = [[ServerIndicator alloc] init];
-
-    ///a toolbar
-    var toolbar = [[Toolbar alloc] initWithWindow:w2];
 
     ///sidebar - right panel
     sidebar = [[Sidebar alloc] initWithFrame:bounds];

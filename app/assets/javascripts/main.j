@@ -11,7 +11,7 @@
 @import "AppController.j"
 @import "Ajax.j"
 
-mainBundle = nil;
+@global mainBundle;
 @global _browser;
 @global ajax;
 @global _settings; // = {};

@@ -15,8 +15,8 @@ var UploadToolbarItemIdentifier = "UploadToolbarItemIdentifier",
     ServerToolbarItemIdentifier = "ServerToolbarItemIdentifier",
     SaveToolbarItemIdentifier = "SaveToolbarItemIdentifier";
 
-ind = nil;
-toolbar = nil;
+var ind = nil;
+@global toolbar;
 
 @implementation Toolbar : CPObject
 {

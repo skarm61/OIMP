@@ -11,6 +11,7 @@
  * this class indicates if we send requests to the server
  */
 @global _settings;
+@global toolbar;
 
 @implementation ServerIndicator : CPObject
 {
@@ -62,7 +63,7 @@
 
 -(id)addView
 {
-    var image = [[CPImage alloc] initWithContentsOfFile:["js/Resources/remove.png"] size:CPSizeMake(30, 25)];
+    var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/remove.png"] size:CPSizeMake(30, 25)];
     //var view = [[CPView alloc] initWithFrame:CGRectMake(0, 0, 80, 24)];
     view = [[CPView alloc] initWithFrame:CGRectMake(0, 0, 80, 24)];
     [view setBackgroundColor: [CPColor colorWithHexString:@"777"]];

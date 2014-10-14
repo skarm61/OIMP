@@ -23,7 +23,7 @@
 
 	if (self)
 	{
-        var image = [[CPImage alloc] initWithContentsOfFile:["js/Resources/download.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
+        var image = [[CPImage alloc] initWithContentsOfFile:["/js/Resources/download.png"] size:CPSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
 
         var toolbarItem = [toolbar items][3];
 		[toolbarItem setImage:image];
