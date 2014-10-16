@@ -15,11 +15,17 @@ var UploadToolbarItemIdentifier = "UploadToolbarItemIdentifier",
     ServerToolbarItemIdentifier = "ServerToolbarItemIdentifier",
     SaveToolbarItemIdentifier = "SaveToolbarItemIdentifier";
 
-var ind = nil;
 @global toolbar;
 
 @implementation Toolbar : CPObject
 {
+	BigToolbar _toolbar;
+}
+
+/// It wasn't required before due to delegate
+- (CPToolbarItem)items
+{
+	return [_toolbar items]
 }
 
 - (Toolbar)initWithWindow:(CPWindow)aWindow
@@ -28,23 +34,12 @@ var ind = nil;
     if (self)
     {
         ///a toolbar
-        toolbar = [[BigToolbar alloc] initWithIdentifier:""];
-        ///it's enough to comment next string to disable toolbar
-        [toolbar setDelegate:self];
-        [toolbar setVisible:YES];
-        [aWindow setToolbar:toolbar];
+        _toolbar = [[BigToolbar alloc] initWithIdentifier:"Toolbar"];
+        [_toolbar setDelegate:self];
+        [_toolbar setVisible:YES];
+        [aWindow setToolbar:_toolbar];
     }
     return self;
-}
-
-- (void)add:(id)sender
-{
-    alert([ind backgroundColor]);
-}
-
-- (void)remove:(id)sender
-{
-    alert("Remove clicked");
 }
 
 // **************************** Toolbar delegate code ****************************
@@ -100,7 +95,6 @@ var ind = nil;
 
         [toolbarItem setMinSize:CGSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
         [toolbarItem setMaxSize:CGSizeMake(_settings.toolbarItemSize, _settings.toolbarItemSize)];
-        ind = toolbarItem;
     }
 
     return toolbarItem;
