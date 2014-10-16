@@ -8,7 +8,6 @@
 
 @global serverIndicator;
 @global photoPanel;
-windowWidth = 0;
 @global sidebar;
 @global _settings;
 @global toolbar;
@@ -37,17 +36,8 @@ windowWidth = 0;
         bounds = [contentView bounds];
     [contentView setBackgroundColor:[CPColor colorWithHexString:@"cecece"]];
 
-    ///second window to place the toolbar at the bottom
-    var w2 = [[CPPanel alloc] initWithContentRect:CGRectMake(0, CGRectGetHeight(bounds) - _settings.toolbarSize,
-                                                              CGRectGetWidth(bounds), _settings.toolbarSize)
-                               styleMask: CPBorderlessWindowMask],
-        c2 = [w2 contentView];
-    [w2 setAutoresizingMask:CPViewMinYMargin | CPViewWidthSizable];
-    [w2 setLevel:5];
-    windowWidth = CGRectGetWidth(bounds);
-
     ///a toolbar
-    toolbar = [[Toolbar alloc] initWithWindow:w2];
+    toolbar = [[Toolbar alloc] initWithWindow:theWindow];
 
     ///here place components which are to be on the window
 
@@ -74,16 +64,15 @@ windowWidth = 0;
 
     ///show window
     [theWindow orderFront:self];
-    [w2 orderFront:self];
 }
 
 - (void)adjustImageSize:(id)sender
 {
 	// debugger;
-    // var newSize = [sender value];
+    var newSize = [sender value];
 
     var newSizeAsString = [CPString stringWithFormat:@"%d", [[CPNumber numberWithDouble:[sender value]] intValue]];
-    alert(newSizeAsString);
+    //alert(newSizeAsString);
 }
 
 @end
