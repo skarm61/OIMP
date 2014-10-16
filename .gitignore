@@ -22,8 +22,6 @@ db/schema.rb
 /.idea
 /public/assets/*
 
-.ruby-version
-.ruby-gemset
-
 *.swp
-
+**/.DS_Store
+public/files/*
