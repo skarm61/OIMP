@@ -1,12 +1,7 @@
 class DataRenderingController < ApplicationController
 
   def styles
-    wrong_names = ['.','..','.svn']
-    folders = Dir.entries('public/samples')
-    wrong_names.each do |wrong|
-      folders.delete(wrong)
-    end
-    render :json => folders.to_json
+    render :json => Dir.entries('public/samples').grep(/^\w/).to_json
   end
   
   def images
